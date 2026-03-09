@@ -188,6 +188,22 @@ function renderIssues(issues) {
   filtered.forEach((issue) => grid.appendChild(createCard(issue)));
 }
 
+// Tabs 
+function initTabs() {
+  $$(".tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activeTab = btn.dataset.tab;
+      $$(".tab-btn").forEach((b) => {
+        b.classList.remove("bg-indigo-600", "text-white", "shadow-sm");
+        b.classList.add("text-gray-500", "hover:text-gray-700");
+      });
+      btn.classList.add("bg-indigo-600", "text-white", "shadow-sm");
+      btn.classList.remove("text-gray-500", "hover:text-gray-700");
+      renderIssues(allIssues);
+    });
+  });
+}
+
 // Init 
 document.addEventListener("DOMContentLoaded", () => {
   initLogin();
