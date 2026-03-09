@@ -204,7 +204,55 @@ function initTabs() {
   });
 }
 
-// ─── Modal ────────────────────────────────────────────────────────────────────
+// Search 
+function initSearch() {
+  let debounceTimer;
+
+  async function doSearch(query) {
+    if (!query.trim()) {
+      renderIssues(allIssues);
+      return;
+    }
+    showSpinner();
+    try {
+      const results = await searchIssues(query);
+      allIssues = results;
+      renderIssues(results);
+    } catch (err) {
+      console.error("Search failed", err);
+    } finally {
+      hideSpinner();
+    }
+  }
+
+  $("#searchInput").addEventListener("input", (e) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => doSearch(e.target.value), 400);
+  });
+
+  $("#searchBtn").addEventListener("click", () => {
+    doSearch($("#searchInput").value);
+  });
+
+  $("#searchInput").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") doSearch(e.target.value);
+  });
+
+  // Reset search when cleared
+  $("#searchInput").addEventListener("input", (e) => {
+    if (!e.target.value.trim()) {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(async () => {
+        showSpinner();
+        allIssues = await fetchIssues();
+        renderIssues(allIssues);
+        hideSpinner();
+      }, 300);
+    }
+  });
+}
+
+// Modal 
 async function openModal(id) {
   const modal = $("#modal");
   const modalBody = $("#modalBody");

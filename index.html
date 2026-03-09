@@ -2,223 +2,226 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Issues Tracker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <style>
-        body {
-            font-family: 'DM Sans', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Issues Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'DM Sans', sans-serif;
+    }
 
-        code,
-        .mono {
-            font-family: 'DM Mono', monospace;
-        }
+    code,
+    .mono {
+      font-family: 'DM Mono', monospace;
+    }
 
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
-        .page {
-            min-height: 100vh;
-        }
-    </style>
+    .page {
+      min-height: 100vh;
+    }
+
+    /* background for login */
+    .login-bg {
+      background-color: #f0f2f7;
+      background-image:
+        linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+  </style>
 </head>
-
 
 <body class="bg-gray-50">
 
-    <!-- login -->
-    <div id="loginPage" class="page login-bg flex items-center justify-center px-4">
-        <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+  <!-- Login page -->
+  <div id="loginPage" class="page login-bg flex items-center justify-center px-4">
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
 
-            <!-- Logo & Title -->
-            <div class="flex flex-col items-center mb-8">
-                <div class="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mb-4 shadow-md">
-                    <i class="fa-brands fa-github text-white text-3xl"></i>
-                </div>
-                <h1 class="text-2xl font-bold text-gray-900">GitHub Issues Tracker</h1>
-                <p class="text-gray-500 text-sm mt-1">Sign in to manage your issues</p>
-            </div>
-
-            <!-- Form -->
-            <form id="loginForm" class="flex flex-col gap-4">
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                    <input id="username" type="text" placeholder="Enter Username"
-                        class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" />
-                    <p class="text-xs text-indigo-500 mt-1">Default: admin</p>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <input id="password" type="password" placeholder="Enter Password"
-                        class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" />
-                    <p class="text-xs text-indigo-500 mt-1">Default: admin123</p>
-                </div>
-
-                <!-- Error -->
-                <p id="loginError" class="hidden text-sm text-red-500 bg-red-50 rounded-lg px-3 py-2"></p>
-
-                <button type="submit"
-                    class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold py-3 rounded-lg transition-colors mt-1">
-                    Sign In
-                </button>
-
-                <!-- Demo credentials -->
-                <div class="relative flex items-center gap-2 my-1">
-                    <div class="flex-1 border-t border-gray-200"></div>
-                    <span class="text-xs text-gray-400 font-medium">OR</span>
-                    <div class="flex-1 border-t border-gray-200"></div>
-                </div>
-                <div class="text-center">
-                    <p class="text-sm text-gray-400 mb-2">Demo Credentials:</p>
-                    <div
-                        class="bg-gray-50 border border-gray-100 rounded-lg p-3 text-sm mono text-gray-700 text-left inline-block w-full">
-                        <p><span class="font-semibold">Username:</span> admin</p>
-                        <p><span class="font-semibold">Password:</span> admin123</p>
-                    </div>
-                </div>
-
-            </form>
+      <!-- Logo & Title -->
+      <div class="flex flex-col items-center mb-8">
+        <div class="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mb-4 shadow-md">
+          <i class="fa-brands fa-github text-white text-3xl"></i>
         </div>
-    </div>
+        <h1 class="text-2xl font-bold text-gray-900">GitHub Issues Tracker</h1>
+        <p class="text-gray-500 text-sm mt-1">Sign in to manage your issues</p>
+      </div>
 
-    <!-- Main page -->
-    <div id="mainPage" class="page hidden bg-gray-50">
+      <!-- Form -->
+      <form id="loginForm" class="flex flex-col gap-4">
 
-        <!-- Navbar -->
-        <nav class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
-
-                <!-- Logo -->
-                <div class="flex items-center gap-2.5 flex-shrink-0">
-                    <div class="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center">
-                        <i class="fa-brands fa-github text-white text-lg"></i>
-                    </div>
-                    <span class="font-bold text-gray-900 text-base sm:text-lg whitespace-nowrap">GitHub Issues
-                        Tracker</span>
-                </div>
-
-                <!-- Search -->
-                <div class="flex items-center gap-2 flex-1 max-w-md">
-                    <div class="relative flex-1">
-                        <i
-                            class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                        <input id="searchInput" type="text" placeholder="Search issues..."
-                            class="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition bg-gray-50" />
-                    </div>
-                    <button id="searchBtn"
-                        class="hidden sm:flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
-                        + New Issue
-                    </button>
-                </div>
-
-            </div>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-
-            <!-- Tab & Stats Container -->
-            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mb-6">
-
-                <!-- Tabs -->
-                <div class="px-4 pt-4">
-                    <div class="flex gap-1 bg-gray-100 rounded-xl p-1 w-fit">
-                        <button
-                            class="tab-btn bg-indigo-600 text-white shadow-sm text-sm font-semibold px-5 py-2 rounded-lg transition-all"
-                            data-tab="all">All</button>
-                        <button
-                            class="tab-btn text-gray-500 hover:text-gray-700 text-sm font-semibold px-5 py-2 rounded-lg transition-all"
-                            data-tab="open">Open</button>
-                        <button
-                            class="tab-btn text-gray-500 hover:text-gray-700 text-sm font-semibold px-5 py-2 rounded-lg transition-all"
-                            data-tab="closed">Closed</button>
-                    </div>
-                </div>
-
-                <!-- Issue Count Bar -->
-                <div class="flex items-center justify-between px-4 py-4 border-t border-gray-100 mt-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                            <i class="fa-solid fa-circle-exclamation text-indigo-600 text-lg"></i>
-                        </div>
-                        <div>
-                            <p id="issueCount" class="font-bold text-gray-900 text-base">— Issues</p>
-                            <p class="text-xs text-gray-400">Track and manage your project issues</p>
-                        </div>
-                    </div>
-                    <div class="hidden sm:flex items-center gap-4 text-sm">
-                        <span class="flex items-center gap-1.5 font-medium text-gray-600">
-                            <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
-                            Open <span id="openCount" class="font-bold text-gray-900">—</span>
-                        </span>
-                        <span class="flex items-center gap-1.5 font-medium text-gray-600">
-                            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block"></span>
-                            Closed <span id="closedCount" class="font-bold text-gray-900">—</span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Spinner -->
-            <div id="spinner" class="hidden flex justify-center items-center py-20">
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin">
-                    </div>
-                    <p class="text-sm text-gray-400 font-medium">Loading issues...</p>
-                </div>
-            </div>
-
-            <!-- Empty State -->
-            <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                    <i class="fa-regular fa-clipboard text-gray-400 text-2xl"></i>
-                </div>
-                <h3 class="font-semibold text-gray-700 mb-1">No issues found</h3>
-                <p class="text-sm text-gray-400">Try a different search or filter.</p>
-            </div>
-
-            <!-- Issues Grid -->
-            <div id="issuesGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            </div>
-
-        </main>
-    </div>
-
-    <!-- Modal -->
-    <div id="modal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 backdrop-blur-sm px-4">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100">
-                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Issue Details</span>
-                <button id="closeModal"
-                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-            <div id="modalBody" class="p-6"></div>
-            <div class="px-6 pb-6">
-                <button onclick="closeModal()"
-                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-lg transition-colors">
-                    Close
-                </button>
-            </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+          <input id="username" type="text" placeholder="Enter Username"
+            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" />
+          <p class="text-xs text-indigo-500 mt-1">Default: admin</p>
         </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <input id="password" type="password" placeholder="Enter Password"
+            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition" />
+          <p class="text-xs text-indigo-500 mt-1">Default: admin123</p>
+        </div>
+
+        <!-- Error -->
+        <p id="loginError" class="hidden text-sm text-red-500 bg-red-50 rounded-lg px-3 py-2"></p>
+
+        <button type="submit"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold py-3 rounded-lg transition-colors mt-1">
+          Sign In
+        </button>
+
+        <!-- Demo credentials -->
+        <div class="relative flex items-center gap-2 my-1">
+          <div class="flex-1 border-t border-gray-200"></div>
+          <span class="text-xs text-gray-400 font-medium">OR</span>
+          <div class="flex-1 border-t border-gray-200"></div>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-400 mb-2">Demo Credentials:</p>
+          <div
+            class="bg-gray-50 border border-gray-100 rounded-lg p-3 text-sm mono text-gray-700 text-left inline-block w-full">
+            <p><span class="font-semibold">Username:</span> admin</p>
+            <p><span class="font-semibold">Password:</span> admin123</p>
+          </div>
+        </div>
+
+      </form>
     </div>
+  </div>
 
-    <script src="app.js"></script>
+  <!-- Main page -->
+  <div id="mainPage" class="page hidden bg-gray-50">
 
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-2.5 flex-shrink-0">
+          <div class="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center">
+            <i class="fa-brands fa-github text-white text-lg"></i>
+          </div>
+          <span class="font-bold text-gray-900 text-base sm:text-lg whitespace-nowrap">GitHub Issues Tracker</span>
+        </div>
+
+        <!-- Search -->
+        <div class="flex items-center gap-2 flex-1 max-w-md">
+          <div class="relative flex-1">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+            <input id="searchInput" type="text" placeholder="Search issues..."
+              class="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition bg-gray-50" />
+          </div>
+          <button id="searchBtn"
+            class="hidden sm:flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
+            + New Issue
+          </button>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+
+      <!-- Tab & Stats Container -->
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mb-6">
+
+        <!-- Tabs -->
+        <div class="px-4 pt-4">
+          <div class="flex gap-1 bg-gray-100 rounded-xl p-1 w-fit">
+            <button
+              class="tab-btn bg-indigo-600 text-white shadow-sm text-sm font-semibold px-5 py-2 rounded-lg transition-all"
+              data-tab="all">All</button>
+            <button
+              class="tab-btn text-gray-500 hover:text-gray-700 text-sm font-semibold px-5 py-2 rounded-lg transition-all"
+              data-tab="open">Open</button>
+            <button
+              class="tab-btn text-gray-500 hover:text-gray-700 text-sm font-semibold px-5 py-2 rounded-lg transition-all"
+              data-tab="closed">Closed</button>
+          </div>
+        </div>
+
+        <!-- Issue Count Bar -->
+        <div class="flex items-center justify-between px-4 py-4 border-t border-gray-100 mt-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+              <i class="fa-solid fa-circle-exclamation text-indigo-600 text-lg"></i>
+            </div>
+            <div>
+              <p id="issueCount" class="font-bold text-gray-900 text-base">— Issues</p>
+              <p class="text-xs text-gray-400">Track and manage your project issues</p>
+            </div>
+          </div>
+          <div class="hidden sm:flex items-center gap-4 text-sm">
+            <span class="flex items-center gap-1.5 font-medium text-gray-600">
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+              Open <span id="openCount" class="font-bold text-gray-900">—</span>
+            </span>
+            <span class="flex items-center gap-1.5 font-medium text-gray-600">
+              <span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block"></span>
+              Closed <span id="closedCount" class="font-bold text-gray-900">—</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spinner -->
+      <div id="spinner" class="hidden flex justify-center items-center py-20">
+        <div class="flex flex-col items-center gap-3">
+          <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+          <p class="text-sm text-gray-400 font-medium">Loading issues...</p>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
+        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+          <i class="fa-regular fa-clipboard text-gray-400 text-2xl"></i>
+        </div>
+        <h3 class="font-semibold text-gray-700 mb-1">No issues found</h3>
+        <p class="text-sm text-gray-400">Try a different search or filter.</p>
+      </div>
+
+      <!-- Issues Grid -->
+      <div id="issuesGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100">
+        <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Issue Details</span>
+        <button id="closeModal"
+          class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div id="modalBody" class="p-6"></div>
+      <div class="px-6 pb-6">
+        <button onclick="closeModal()"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-lg transition-colors">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 
 </html>
