@@ -94,6 +94,109 @@
         </div>
     </div>
 
+    <!-- Main page -->
+    <div id="mainPage" class="page hidden bg-gray-50">
+
+        <!-- Navbar -->
+        <nav class="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+
+                <!-- Logo -->
+                <div class="flex items-center gap-2.5 flex-shrink-0">
+                    <div class="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center">
+                        <i class="fa-brands fa-github text-white text-lg"></i>
+                    </div>
+                    <span class="font-bold text-gray-900 text-base sm:text-lg whitespace-nowrap">GitHub Issues
+                        Tracker</span>
+                </div>
+
+                <!-- Search -->
+                <div class="flex items-center gap-2 flex-1 max-w-md">
+                    <div class="relative flex-1">
+                        <i
+                            class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <input id="searchInput" type="text" placeholder="Search issues..."
+                            class="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition bg-gray-50" />
+                    </div>
+                    <button id="searchBtn"
+                        class="hidden sm:flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
+                        + New Issue
+                    </button>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+
+            <!-- Tab & Stats Container -->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mb-6">
+
+                <!-- Tabs -->
+                <div class="px-4 pt-4">
+                    <div class="flex gap-1 bg-gray-100 rounded-xl p-1 w-fit">
+                        <button
+                            class="tab-btn bg-indigo-600 text-white shadow-sm text-sm font-semibold px-5 py-2 rounded-lg transition-all"
+                            data-tab="all">All</button>
+                        <button
+                            class="tab-btn text-gray-500 hover:text-gray-700 text-sm font-semibold px-5 py-2 rounded-lg transition-all"
+                            data-tab="open">Open</button>
+                        <button
+                            class="tab-btn text-gray-500 hover:text-gray-700 text-sm font-semibold px-5 py-2 rounded-lg transition-all"
+                            data-tab="closed">Closed</button>
+                    </div>
+                </div>
+
+                <!-- Issue Count Bar -->
+                <div class="flex items-center justify-between px-4 py-4 border-t border-gray-100 mt-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                            <i class="fa-solid fa-circle-exclamation text-indigo-600 text-lg"></i>
+                        </div>
+                        <div>
+                            <p id="issueCount" class="font-bold text-gray-900 text-base">— Issues</p>
+                            <p class="text-xs text-gray-400">Track and manage your project issues</p>
+                        </div>
+                    </div>
+                    <div class="hidden sm:flex items-center gap-4 text-sm">
+                        <span class="flex items-center gap-1.5 font-medium text-gray-600">
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                            Open <span id="openCount" class="font-bold text-gray-900">—</span>
+                        </span>
+                        <span class="flex items-center gap-1.5 font-medium text-gray-600">
+                            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block"></span>
+                            Closed <span id="closedCount" class="font-bold text-gray-900">—</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spinner -->
+            <div id="spinner" class="hidden flex justify-center items-center py-20">
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin">
+                    </div>
+                    <p class="text-sm text-gray-400 font-medium">Loading issues...</p>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
+                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa-regular fa-clipboard text-gray-400 text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-700 mb-1">No issues found</h3>
+                <p class="text-sm text-gray-400">Try a different search or filter.</p>
+            </div>
+
+            <!-- Issues Grid -->
+            <div id="issuesGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            </div>
+
+        </main>
+    </div>
+
 
 </body>
 
