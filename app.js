@@ -204,6 +204,81 @@ function initTabs() {
   });
 }
 
+// ─── Modal ────────────────────────────────────────────────────────────────────
+async function openModal(id) {
+  const modal = $("#modal");
+  const modalBody = $("#modalBody");
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+  modalBody.innerHTML = `<div class="flex justify-center py-8"><div class="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div></div>`;
+
+  try {
+    const issue = await fetchSingleIssue(id);
+    if (!issue) throw new Error("Not found");
+
+    const isOpen = issue.status === "open";
+    const statusBadge = isOpen
+      ? `<span class="inline-flex items-center gap-1.5 text-sm font-semibold bg-green-500 text-white px-3 py-1 rounded-full">
+          <span class="w-2 h-2 bg-white rounded-full"></span> Opened
+        </span>`
+      : `<span class="inline-flex items-center gap-1.5 text-sm font-semibold bg-purple-500 text-white px-3 py-1 rounded-full">
+          <span class="w-2 h-2 bg-white rounded-full"></span> Closed
+        </span>`;
+
+    const labelsHtml = issue.labels
+      .map(
+        (l) =>
+          `<span class="inline-flex items-center gap-1 text-sm px-3 py-1 rounded-full font-medium ${getLabelStyle(l)}">
+            <span>${getLabelIcon(l)}</span> ${l.toUpperCase()}
+          </span>`
+      )
+      .join("");
+
+    modalBody.innerHTML = `
+      <div class="flex items-start justify-between gap-4 mb-4">
+        <h2 class="text-xl font-bold text-gray-900 leading-snug">${issue.title}</h2>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        ${statusBadge}
+        <span class="text-sm text-gray-500">•</span>
+        <span class="text-sm text-gray-500">Opened by <strong class="text-gray-700">${issue.author}</strong></span>
+        <span class="text-sm text-gray-500">•</span>
+        <span class="text-sm text-gray-500">${formatDate(issue.createdAt)}</span>
+      </div>
+      <div class="flex flex-wrap gap-2 mb-5">${labelsHtml}</div>
+      <p class="text-gray-600 text-sm leading-relaxed mb-6 bg-gray-50 rounded-lg p-4">${issue.description}</p>
+      <div class="grid grid-cols-2 gap-4 bg-gray-50 rounded-xl p-4">
+        <div>
+          <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">Assignee</p>
+          <p class="font-semibold text-gray-800">${issue.assignee || "Unassigned"}</p>
+        </div>
+        <div>
+          <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">Priority</p>
+          <span class="inline-block text-sm font-bold px-3 py-1 rounded-full ${getPriorityStyle(issue.priority)}">${(issue.priority || "").toUpperCase()}</span>
+        </div>
+      </div>
+    `;
+  } catch (err) {
+    modalBody.innerHTML = `<p class="text-red-500 text-center py-8">Failed to load issue details.</p>`;
+  }
+}
+
+function closeModal() {
+  const modal = $("#modal");
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
+}
+
+function initModal() {
+  $("#closeModal").addEventListener("click", closeModal);
+  $("#modal").addEventListener("click", (e) => {
+    if (e.target === $("#modal")) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+}
+
 // Init 
 document.addEventListener("DOMContentLoaded", () => {
   initLogin();
